@@ -142,7 +142,7 @@
             right:0px;
             width:100%;
             height:100%;
-            background-color: rgba(220, 220, 220, 0.9);
+            background-color: rgba(182, 182, 182, 0.9);
             background-image:url('spinner.gif');
             background-repeat:no-repeat;
             background-position:center;
@@ -186,7 +186,7 @@
         <header class="demo-drawer-header">
           <img src="images/user.jpg" class="demo-avatar">
           <div class="demo-avatar-dropdown">
-            <span>hello@example.com</span>
+            <span>ymmud</span>
             <div class="mdl-layout-spacer"></div>
            <!-- <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button&#45;&#45;icon">
               <i class="material-icons" role="presentation">arrow_drop_down</i>
@@ -231,7 +231,7 @@
                   <tr>
                     <th class="mdl-data-table__cell--non-numeric">Name</th>
                     <th>Workers</th>
-                    <th>Type</th>
+                    <th>Worker Type</th>
                     <th>Status</th>
                   </tr>
                   </thead>
@@ -258,7 +258,12 @@
       $('body').on('click', 'tr.app_row', function() {
          console.log($(this).find('td.app_name').text());
          var app = $(this).find('td.app_name').text();
-         location.href = 'app_details1.html?app_name='+app;
+         var appurl = $(this).find('td').attr('appurl');
+         var status = $(this).find('td').attr('status');
+         var lastUpdateTime = $(this).find('td').attr('lastUpdateTime');
+         var muleVersion = $(this).find('td').attr('muleVersion');
+         var workers = $(this).find('td').attr('workers');
+         location.href = 'app_details1.html?app_name='+app+'&appurl='+appurl+'&status='+status+'&lastUpdateTime='+lastUpdateTime+'&muleVersion='+muleVersion+'&workers='+workers;
       });
 
       function invoke_service(){
@@ -275,7 +280,8 @@
                   var row ='';
                   $.each(data, function(key,value) {
                       row = row +' <tr class="app_row"> '+
-                      '<td class="mdl-data-table__cell&#45;&#45;non-numeric app_name">'+value.domain+'</td>'+
+                      '<td class="mdl-data-table__cell&#45;&#45;non-numeric app_name" lastUpdateTime="'+value.lastUpdateTime+'"' +
+                          ' muleVersion="'+value.muleVersion+'" appurl="'+value.href+'" status="'+value.status+'" workers="'+value.workers+'">'+value.domain+'</td>'+
                           '<td>'+value.workers+'</td>'+
                           '<td>'+value.workerType+'</td>'+
                           '<td><span class="';
