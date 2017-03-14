@@ -151,6 +151,19 @@
             filter: alpha(opacity=40); /* For IE8 and earlier */
         }
 
+        .demo-card-wide.mdl-card {
+            /*width: 512px;*/
+        }
+        .demo-card-wide > .mdl-card__title {
+            color: #44638c;
+            /*height: 176px;*/
+
+        }
+        .demo-card-wide > .mdl-card__menu {
+            color: #fff;
+        }
+
+
     </style>
   </head>
   <body>
@@ -161,7 +174,7 @@
 
       <header class="demo-header mdl-layout__header mdl-color--blue-600 mdl-color-text--white">
         <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">Applications</span>
+          <span class="mdl-layout-title">Runtime Manager</span>
           <div class="mdl-layout-spacer"></div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
@@ -178,7 +191,7 @@
           <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
             <!--<li class="mdl-menu__item">Profile</li>-->
             <!--<li class="mdl-menu__item">Settings</li>-->
-            <li class="mdl-menu__item">Logout</li>
+            <li class="mdl-menu__item app_logout">Logout</li>
           </ul>
         </div>
       </header>
@@ -200,10 +213,10 @@
           </div>
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">home</i>Home</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">inbox</i>Inbox</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">delete</i>Trash</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">report</i>Spam</a>
+          <a class="mdl-navigation__link" href="landing.html"><i class="mdl-color-text--white material-icons" role="presentation">restore</i>Runtime Manager</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">polymer</i>API Manager</a>
+          <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;white material-icons" role="presentation">delete</i>Trash</a>-->
+          <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;white material-icons" role="presentation">report</i>Spam</a>-->
           <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>-->
           <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>-->
           <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>-->
@@ -215,32 +228,62 @@
       </div>
 
       <main class="mdl-layout__content mdl-color--white">
-        <div class="mdl-grid demo-content">
-          <div class="mdl-cell mdl-cell--12-col">
 
-            <span class="mdl-chip mdl-chip--contact">
-    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">P</span>
-    <span class="mdl-chip__text">Production</span>
-</span>
-          </div>
-
+          <div class="mdl-grid" style="padding: 10px 0px 0px 0px !important;">
               <div class="mdl-cell mdl-cell--12-col">
-            <!--<table class="mdl-data-table mdl-js-data-table mdl-data-table&#45;&#45;selectable mdl-shadow&#45;&#45;2dp">-->
-              <table class="mdl-data-table mdl-js-data-table">
-                  <thead>
-                  <tr>
-                    <th class="mdl-data-table__cell--non-numeric">Name</th>
-                    <th>Workers</th>
-                    <th>Worker Type</th>
-                    <th>Status</th>
-                  </tr>
-                  </thead>
-                  <tbody class="table_body">
 
-                  </tbody>
-            </table>
+                  <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                      <div class="mdl-card__title">
+                          <h3 class="mdl-card__title-text">Applications</h3>
+                      </div>
+                      <div class="mdl-card__supporting-text">
+
+                          <div class="mdl-grid demo-content" style="padding-top: 7px !important; margin: 0px !important;">
+                              <div class="mdl-cell mdl-cell--2-col" style="margin: 0px !important;">
+
+                    <span class="mdl-chip mdl-chip--contact">
+                        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">P</span>
+                        <span class="mdl-chip__text">Production</span>
+                    </span>
+                              </div>
+                              <div class="mdl-cell mdl-cell--2-col" style="margin: 0px !important;">
+
+                                  <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" style="float: right;">
+                                      <i class="material-icons table-refresh" style="color: #ffffff">refresh</i>
+                                  </button>
+                              </div>
+                          </div>
+
+                          <div class="mdl-grid" style="padding: 0px !important;">
+                              <div class="mdl-cell mdl-cell--12-col">
+                                  <table class="mdl-data-table mdl-js-data-table">
+                                      <thead>
+                                      <tr>
+                                          <th class="mdl-data-table__cell--non-numeric">Name</th>
+                                          <th>Workers</th>
+                                          <th>Worker Type</th>
+                                          <th>Status</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody class="table_body">
+
+                                      </tbody>
+                                  </table>
+
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="mdl-card__menu">
+                          <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                              <i class="material-icons">share</i>
+                          </button>
+                      </div>
+                  </div>
+
+              </div>
           </div>
-        </div>
+
       </main>
     </div>
 
@@ -255,6 +298,15 @@
       });
 
 
+
+      $('body').on('click', '.app_logout', function() {
+          window.location.replace("index.html");
+      });
+
+      $('body').on('click', '.table-refresh', function() {
+          invoke_service();
+      });
+
       $('body').on('click', 'tr.app_row', function() {
          console.log($(this).find('td.app_name').text());
          var app = $(this).find('td.app_name').text();
@@ -263,7 +315,8 @@
          var lastUpdateTime = $(this).find('td').attr('lastUpdateTime');
          var muleVersion = $(this).find('td').attr('muleVersion');
          var workers = $(this).find('td').attr('workers');
-         location.href = 'app_details1.html?app_name='+app+'&appurl='+appurl+'&status='+status+'&lastUpdateTime='+lastUpdateTime+'&muleVersion='+muleVersion+'&workers='+workers;
+         var userName = $(this).find('td').attr('userName');
+         location.href = 'app_details1.html?app_name='+app+'&appurl='+appurl+'&status='+status+'&lastUpdateTime='+lastUpdateTime+'&muleVersion='+muleVersion+'&workers='+workers+'&userName='+userName;
       });
 
       function invoke_service(){
@@ -272,7 +325,7 @@
               type: 'get',
               contentType: 'application/json',
               beforeSend: function (xhr) {
-                  xhr.setRequestHeader ("Authorization", "Basic " + btoa('ymmud' + ":" + 'Test@123'));
+                  xhr.setRequestHeader ("Authorization", "Basic " + btoa(localStorage.getItem('username') + ":" + localStorage.getItem('password')));
               },
               url: 'https://anypoint.mulesoft.com/cloudhub/api/applications',
               success: function(data) {
@@ -281,7 +334,7 @@
                   $.each(data, function(key,value) {
                       row = row +' <tr class="app_row"> '+
                       '<td class="mdl-data-table__cell&#45;&#45;non-numeric app_name" lastUpdateTime="'+value.lastUpdateTime+'"' +
-                          ' muleVersion="'+value.muleVersion+'" appurl="'+value.href+'" status="'+value.status+'" workers="'+value.workers+'">'+value.domain+'</td>'+
+                          ' muleVersion="'+value.muleVersion+'" appurl="'+value.href+'" status="'+value.status+'" workers="'+value.workers+'" userName="'+value.userName+'">'+value.domain+'</td>'+
                           '<td>'+value.workers+'</td>'+
                           '<td>'+value.workerType+'</td>'+
                           '<td><span class="';
@@ -293,7 +346,7 @@
                           row = row + '" style="background: #000000 !important;" data-badge=""></span></td>'+
                       '</tr>';
                   });
-                  $('.table_body').append(row);
+                  $('.table_body').html(row);
                   $('#loadingDiv').hide();
               },
               error: function(jqXHR,textStatus,errorThrown) {

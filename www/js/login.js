@@ -49,6 +49,9 @@ var Login = function () {
 
 	            submitHandler: function (form) {
 
+	            	console.log($('.username').attr('value'));
+                    localStorage.setItem('username', $('input.username').attr('value'));
+                    localStorage.setItem('password', $('input.password').attr('value'));
                         window.location.replace("landing.html");
 
                 }
@@ -57,7 +60,7 @@ var Login = function () {
 	        $('.login-form input').keypress(function (e) {
 	            if (e.which == 13) {
 	                if ($('.login-form').validate().form()) {
-                        window.location.replace("landing.html");
+                        window.location.replace("landing1.html");
 
                     }
 	                return false;
@@ -103,7 +106,7 @@ var Login = function () {
 	            submitHandler: function (form)
                 {
 
-                    window.location.replace("landing.html");
+                    window.location.replace("landing1.html");
 
 
 	            }
@@ -112,7 +115,7 @@ var Login = function () {
 	        $('.forget-form input').keypress(function (e) {
 	            if (e.which == 13) {
 	                if ($('.forget-form').validate().form()) {
-                        window.location.replace("landing.html");
+                        window.location.replace("landing1.html");
 
                     }
 	                return false;
@@ -182,7 +185,7 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-                    window.location.replace("landing.html");
+                    window.location.replace("landing1.html");
 
                 }
 	        });

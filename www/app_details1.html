@@ -115,7 +115,7 @@
           <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
             <!--<li class="mdl-menu__item">Profile</li>-->
             <!--<li class="mdl-menu__item">Settings</li>-->
-            <li class="mdl-menu__item">Logout</li>
+            <li class="mdl-menu__item app_logout">Logout</li>
           </ul>
         </div>
       </header>
@@ -137,10 +137,10 @@
           </div>
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">home</i>Home</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">inbox</i>Inbox</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">delete</i>Trash</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">report</i>Spam</a>
+            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">home</i>Runtime Manager</a>
+            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">inbox</i>API Manager</a>
+          <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;white material-icons" role="presentation">delete</i>Trash</a>-->
+          <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;white material-icons" role="presentation">report</i>Spam</a>-->
           <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>-->
           <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>-->
           <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>-->
@@ -170,6 +170,10 @@
                           <div class="mdl-grid" style="padding: 1px !important;">
                               <div class="mdl-cell mdl-cell--2-col" style="">No of Workers</div>
                               <div class="mdl-cell mdl-cell--2-col workers" style="font-weight: 500;text-align: center"></div>
+                          </div>
+                          <div class="mdl-grid" style="padding: 1px !important;">
+                              <div class="mdl-cell mdl-cell--2-col" style="">Owner</div>
+                              <div class="mdl-cell mdl-cell--2-col userName" style="font-weight: 500;text-align: center"></div>
                           </div>
                           <div class="mdl-grid" style="padding: 1px !important;">
                               <div class="mdl-cell mdl-cell--2-col" style="">Last Updated Time</div>
@@ -251,12 +255,14 @@
           var lastUpdateTime = queryParams[3].split('=')[1];
           var muleVersion = queryParams[4].split('=')[1];
           var workers = queryParams[5].split('=')[1];
+          var userName = queryParams[6].split('=')[1];
 
           $('.appurl').text(appurl);
           var newDate = new Date(parseInt(lastUpdateTime));
           $('.lastUpdateTime').text(newDate.toUTCString());
           $('.muleVersion').text(muleVersion);
           $('.workers').text(workers);
+          $('.userName').text(userName);
 
           var tmpl;
           if(status == 'STARTED'){
@@ -276,6 +282,10 @@
        invoke_service();
       });
 
+      $('body').on('click', '.app_logout', function() {
+          window.location.replace("index.html");
+      });
+
       $('body').on('click', 'a.stop-app', function() {
           manage_app('stop','Application will be undeployed');
       });
@@ -290,10 +300,10 @@
               type: 'post',
 //              contentType: 'application/json',
               beforeSend: function (xhr) {
-                  xhr.setRequestHeader ("Authorization", "Basic " + btoa('ymmud' + ":" + 'Test@123'));
+                  xhr.setRequestHeader ("Authorization", "Basic " + btoa(localStorage.getItem('username') + ":" + localStorage.getItem('password')));
               },
               headers: { 'Content-Type': 'application/json' },
-              url: 'https://anypoint.mulesoft.com/cloudhub/api/applications/raml1/status',
+              url: 'https://anypoint.mulesoft.com/cloudhub/api/applications/'+params+'/status',
               data: '{"status":"'+cmd+'", "staticIpAddress": ""}',
               success: function(data) {
 
@@ -304,6 +314,9 @@
               error: function(jqXHR,textStatus,errorThrown) {
                   $('#loadingDiv').hide();
                   show_snackbar(msg);
+                  console.log(errorThrown);
+                  console.log(textStatus);
+                  console.log(jqXHR)
               }
           });
       }
@@ -321,20 +334,23 @@
               type: 'get',
               contentType: 'application/json',
               beforeSend: function (xhr) {
-                  xhr.setRequestHeader ("Authorization", "Basic " + btoa('ymmud' + ":" + 'Test@123'));
+                  xhr.setRequestHeader ("Authorization", "Basic " + btoa(localStorage.getItem('username') + ":" + localStorage.getItem('password')));
               },
               url: 'https://anypoint.mulesoft.com/cloudhub/api/v2/applications/'+params+'/dashboardStats',
               success: function(data) {
 
-                  var networkIn = data.workerStatistics[0].statistics.networkIn;
-                  var networkOut = data.workerStatistics[0].statistics.networkOut;
-                  memoryChart(networkIn, networkOut, 'Network In (KB)', 'Network Out (KB)');
+                  if(data.workerStatistics[0] != null){
+                      var networkIn = data.workerStatistics[0].statistics.networkIn;
+                      var networkOut = data.workerStatistics[0].statistics.networkOut;
+                      memoryChart(networkIn, networkOut, 'Network In (KB)', 'Network Out (KB)');
 
-                  var cpu = data.workerStatistics[0].statistics.cpu;
-                  memoryChart_single(cpu,'CPU Usage','#ff829d','myChart1');
+                      var cpu = data.workerStatistics[0].statistics.cpu;
+                      memoryChart_single(cpu,'CPU Usage','#ff829d','myChart1');
 
-                  var memory = data.workerStatistics[0].statistics.memoryPercentageUsed;
-                  memoryChart_single(memory,'Memory Used (%)','#af63ff','myChart2');
+                      var memory = data.workerStatistics[0].statistics.memoryPercentageUsed;
+                      memoryChart_single(memory,'Memory Used (%)','#af63ff','myChart2');
+
+                  }
 
                  /* var row ='';
                   $.each(data, function(key,value) {
