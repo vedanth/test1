@@ -339,7 +339,7 @@
 
           $.ajax({
               type: "GET",
-              url: 'http://192.168.106.48:8082/login?username='+localStorage.getItem("username")+'&password='+localStorage.getItem("password"),
+              url: 'http://platformapi.cloudhub.io/login',
 //              data: JSON.stringify('{"username":"'+localStorage.getItem('username')+'", "password": "'+localStorage.getItem('password')+'"}'),
 //              dataType: "json",
               success: function(data) {
