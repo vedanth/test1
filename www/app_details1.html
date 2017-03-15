@@ -120,11 +120,13 @@
         </div>
       </header>
       <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-        <header class="demo-drawer-header">
-          <img src="images/user.jpg" class="demo-avatar">
-          <div class="demo-avatar-dropdown">
-            <span>ymmud</span>
-            <div class="mdl-layout-spacer"></div>
+          <header class="demo-drawer-header">
+              <span style="font-size: 19px;padding: 10px">Anypoint Platform </span>
+              <img src="images/user-icon-png-pnglogocom.png" class="demo-avatar">
+
+              <div class="demo-avatar-dropdown">
+                  <span>ymmud</span>
+                  <div class="mdl-layout-spacer"></div>
            <!-- <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button&#45;&#45;icon">
               <i class="material-icons" role="presentation">arrow_drop_down</i>
               <span class="visuallyhidden">Accounts</span>
@@ -138,7 +140,7 @@
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
             <a class="mdl-navigation__link" href="landing.html"><i class="mdl-color-text--white material-icons" role="presentation">home</i>Runtime Manager</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--white material-icons" role="presentation">inbox</i>API Manager</a>
+            <a class="mdl-navigation__link" href="api_manager.html"><i class="mdl-color-text--white material-icons" role="presentation">inbox</i>API Manager</a>
           <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;white material-icons" role="presentation">delete</i>Trash</a>-->
           <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;white material-icons" role="presentation">report</i>Spam</a>-->
           <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>-->
@@ -345,10 +347,10 @@
                       memoryChart(networkIn, networkOut, 'Network In (KB)', 'Network Out (KB)');
 
                       var cpu = data.workerStatistics[0].statistics.cpu;
-                      memoryChart_single(cpu,'CPU Usage','#ff829d','myChart1');
+                      memoryChart_single(cpu,'CPU Usage','#20ba74','myChart1');
 
                       var memory = data.workerStatistics[0].statistics.memoryPercentageUsed;
-                      memoryChart_single(memory,'Memory Used (%)','#af63ff','myChart2');
+                      memoryChart_single(memory,'Memory Used (%)','#8625ff','myChart2');
 
                   }
 
