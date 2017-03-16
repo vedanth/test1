@@ -49,19 +49,22 @@ var Login = function () {
 
 	            submitHandler: function (form) {
 
-	            	console.log($('.username').attr('value'));
-                    localStorage.setItem('username', $('input.username').attr('value'));
-                    localStorage.setItem('password', $('input.password').attr('value'));
-                        window.location.replace("landing.html");
-
+	            	login();
                 }
 	        });
+
+           function login(){
+                console.log($('#username').val());
+                localStorage.setItem('username', $('input.username').val());
+                localStorage.setItem('password', $('input.password').val());
+                window.location.replace("dashboard.html");
+
+            }
 
 	        $('.login-form input').keypress(function (e) {
 	            if (e.which == 13) {
 	                if ($('.login-form').validate().form()) {
-                        window.location.replace("landing1.html");
-
+                        login();
                     }
 	                return false;
 	            }
@@ -105,9 +108,7 @@ var Login = function () {
 
 	            submitHandler: function (form)
                 {
-
-                    window.location.replace("landing1.html");
-
+                    login();
 
 	            }
 	        });
@@ -115,8 +116,7 @@ var Login = function () {
 	        $('.forget-form input').keypress(function (e) {
 	            if (e.which == 13) {
 	                if ($('.forget-form').validate().form()) {
-                        window.location.replace("landing1.html");
-
+                        login();
                     }
 	                return false;
 	            }
@@ -185,7 +185,7 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-                    window.location.replace("landing1.html");
+                    login();
 
                 }
 	        });

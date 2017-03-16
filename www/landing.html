@@ -48,6 +48,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="css/bluemin.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
     <style>
 
         .mdl-badge[data-badge]:after {
@@ -215,6 +216,7 @@
           </div>
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+          <a class="mdl-navigation__link" href="dashboard.html"><i class="mdl-color-text--white material-icons" role="presentation">restore</i>Dashboard</a>
           <a class="mdl-navigation__link" href="landing.html"><i class="mdl-color-text--white material-icons" role="presentation">restore</i>Runtime Manager</a>
           <a class="mdl-navigation__link" href="api_manager.html"><i class="mdl-color-text--white material-icons" role="presentation">polymer</i>API Manager</a>
           <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;white material-icons" role="presentation">delete</i>Trash</a>-->
@@ -258,10 +260,10 @@
 
                           <div class="mdl-grid" style="padding: 0px !important;">
                               <div class="mdl-cell mdl-cell--12-col">
-                                  <table class="mdl-data-table mdl-js-data-table">
+                                 <!-- <table class="mdl-data-table mdl-js-data-table">
                                       <thead>
                                       <tr>
-                                          <th class="mdl-data-table__cell--non-numeric">Name</th>
+                                          <th class="mdl-data-table__cell&#45;&#45;non-numeric">Name</th>
                                           <th>Workers</th>
                                           <th>Type</th>
                                           <th>Status</th>
@@ -270,7 +272,12 @@
                                       <tbody class="table_body">
 
                                       </tbody>
-                                  </table>
+                                  </table>-->
+
+                                  <ul class="demo-list-two mdl-list" style="padding: 0px !important;">
+
+
+                                  </ul>
 
                               </div>
                           </div>
@@ -309,15 +316,17 @@
           invoke_service();
       });
 
-      $('body').on('click', 'tr.app_row', function() {
-         console.log($(this).find('td.app_name').text());
-         var app = $(this).find('td.app_name').text();
-         var appurl = $(this).find('td').attr('appurl');
-         var status = $(this).find('td').attr('status');
-         var lastUpdateTime = $(this).find('td').attr('lastUpdateTime');
-         var muleVersion = $(this).find('td').attr('muleVersion');
-         var workers = $(this).find('td').attr('workers');
-         var userName = $(this).find('td').attr('userName');
+      $('body').on('click', 'li.mdl-list__item', function() {
+         console.log($(this).find('span.app_name').text());
+         console.log($(this).find('span.app_name').attr('lastUpdateTime'));
+         var app = $(this).find('span.app_name').text();
+         var appurl = $(this).find('span.app_name').attr('appurl');
+
+         var status = $(this).find('span.app_name').attr('status');
+         var lastUpdateTime = $(this).find('span.app_name').attr('lastUpdateTime');
+         var muleVersion = $(this).find('span.app_name').attr('muleVersion');
+         var workers = $(this).find('span.app_name').attr('workers');
+         var userName = $(this).find('span.app_name').attr('userName');
          location.href = 'app_details1.html?app_name='+app+'&appurl='+appurl+'&status='+status+'&lastUpdateTime='+lastUpdateTime+'&muleVersion='+muleVersion+'&workers='+workers+'&userName='+userName;
       });
 
@@ -331,30 +340,44 @@
               },
               url: 'https://anypoint.mulesoft.com/cloudhub/api/applications',
               success: function(data) {
-
+                  var counter =0;
                   var row ='';
                   $.each(data, function(key,value) {
-                      row = row +' <tr class="app_row"> '+
-                      '<td class="mdl-data-table__cell&#45;&#45;non-numeric app_name" lastUpdateTime="'+value.lastUpdateTime+'"' +
-                          ' muleVersion="'+value.muleVersion+'" appurl="'+value.href+'" status="'+value.status+'" workers="'+value.workers+'" userName="'+value.userName+'">'+value.domain+'</td>'+
-                          '<td>'+value.workers+'</td>'+
-                          '<td>'+value.workerType+'</td>'+
-                          '<td><span class="';
-                          if(value.status == 'STARTED'){
-                                row =  row + 'mdl-badge-green';
-                          }else{
-                              row =  row + 'mdl-badge-red';
+                      var date = new Date(value.lastUpdateTime);
+
+                      row = row +' <li class="mdl-list__item mdl-list__item--two-line" >'+
+                          '<span class="mdl-list__item-primary-content">'+
+                          '<i class="material-icons mdl-list__item-avatar" style="background: #ffffff;color: #5a92ff;">filter_drama</i>'+
+                          '<span class="app_name" lastUpdateTime="'+value.lastUpdateTime+'"' +
+                          ' muleVersion="'+value.muleVersion+'" appurl="'+value.href+'" status="'+value.status+'" workers="'+value.workers+'" userName="'+value.userName+'">'+value.domain+'</span>'+
+                          '<span class="mdl-list__item-sub-title" style="margin-top: 10px;font-size: 13px; font-weight: 700"><i class="fa icon-calendar-empty" > <span style="font-size: 15px; color: #2f425f">'+date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+'</span></i><span></span></span>'+
+                          '</span>'+
+                          '<span class="mdl-list__item-secondary-content">';
+
+                          if(counter == 0){
+                              row = row + '<span class="mdl-list__item-secondary-info">Status</span>';
                           }
-                          row = row + '" style="background: #000000 !important;" data-badge=""></span></td>'+
-                      '</tr>';
+
+                      if(value.status == 'STARTED'){
+                          row = row + '<a class="mdl-list__item-secondary-action" href="#" style="font-size: 20px"><i class="material-icons" style=" color: #07b527">fiber_manual_record</i></a>';
+                      }else{
+                          row = row + '<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons" style="color: #d11200">fiber_manual_record</i></a>';
+                      }
+
+
+                          row = row + '</span>'+
+                          '</li>';
+                          counter++;
                   });
-                  $('.table_body').html(row);
+                  $('.demo-list-two').html(row);
                   $('#loadingDiv').hide();
               },
               error: function(jqXHR,textStatus,errorThrown) {
                   console.log(errorThrown);
                   console.log(textStatus);
-                  console.log(jqXHR)
+                  console.log(jqXHR);
+                  alert(textStatus + ' '+errorThrown);
+                  $('#loadingDiv').hide();
               }
           });
 
