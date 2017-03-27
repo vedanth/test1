@@ -304,6 +304,7 @@
 //              contentType: 'application/json',
               beforeSend: function (xhr) {
                   xhr.setRequestHeader ("Authorization", "Basic " + btoa(localStorage.getItem('username') + ":" + localStorage.getItem('password')));
+				  xhr.setRequestHeader ("X-ANYPNT-ENV-ID",localStorage.getItem('envId'));
               },
               headers: { 'Content-Type': 'application/json' },
               url: 'https://anypoint.mulesoft.com/cloudhub/api/applications/'+params+'/status',
@@ -338,6 +339,7 @@
               contentType: 'application/json',
               beforeSend: function (xhr) {
                   xhr.setRequestHeader ("Authorization", "Basic " + btoa(localStorage.getItem('username') + ":" + localStorage.getItem('password')));
+				  xhr.setRequestHeader ("X-ANYPNT-ENV-ID",localStorage.getItem('envId'));
               },
               url: 'https://anypoint.mulesoft.com/cloudhub/api/v2/applications/'+params+'/dashboardStats',
               success: function(data) {

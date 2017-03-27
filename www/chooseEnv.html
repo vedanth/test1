@@ -48,6 +48,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="css/bluemin.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
     <style>
 
         .mdl-badge[data-badge]:after {
@@ -174,9 +175,9 @@
 
       <header class="demo-header mdl-layout__header mdl-color--blue-600 mdl-color-text--white">
         <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">API Manager</span>
+          <span class="mdl-layout-title">Choose Environment</span>
           <div class="mdl-layout-spacer"></div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+          <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
               <i class="material-icons">search</i>
             </label>
@@ -184,7 +185,7 @@
               <input class="mdl-textfield__input" type="text" id="search">
               <label class="mdl-textfield__label" for="search">Enter your query...</label>
             </div>
-          </div>
+          </div> -->
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
             <i class="material-icons">more_vert</i>
           </button>
@@ -196,13 +197,13 @@
         </div>
       </header>
       <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-        <header class="demo-drawer-header">
-            <span style="font-size: 19px;padding: 10px">Anypoint Platform </span>
-          <img src="images/user-icon-png-pnglogocom.png" class="demo-avatar">
+          <header class="demo-drawer-header">
+              <span style="font-size: 19px;padding: 10px">Anypoint Platform </span>
+              <img src="images/user-icon-png-pnglogocom.png" class="demo-avatar">
 
-          <div class="demo-avatar-dropdown">
-            <span>Suresh Jaganathan</span>
-            <div class="mdl-layout-spacer"></div>
+              <div class="demo-avatar-dropdown">
+                  <span>Suresh Jaganathan</span>
+                  <div class="mdl-layout-spacer"></div>
            <!-- <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button&#45;&#45;icon">
               <i class="material-icons" role="presentation">arrow_drop_down</i>
               <span class="visuallyhidden">Accounts</span>
@@ -215,7 +216,7 @@
           </div>
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-            <a class="mdl-navigation__link" href="dashboard.html"><i class="mdl-color-text--white material-icons" role="presentation">restore</i>Dashboard</a>
+          <a class="mdl-navigation__link" href="dashboard.html"><i class="mdl-color-text--white material-icons" role="presentation">restore</i>Dashboard</a>
           <a class="mdl-navigation__link" href="landing.html"><i class="mdl-color-text--white material-icons" role="presentation">restore</i>Runtime Manager</a>
           <a class="mdl-navigation__link" href="api_manager.html"><i class="mdl-color-text--white material-icons" role="presentation">polymer</i>API Manager</a>
           <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;white material-icons" role="presentation">delete</i>Trash</a>-->
@@ -236,28 +237,33 @@
               <div class="mdl-cell mdl-cell--12-col">
 
                   <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                      <div class="mdl-card__title" style="padding: 0px !important;padding: 10px !important;">
-                          <h3 class="mdl-card__title-text">APIs</h3>
+                      <div class="mdl-card__title">
+                          <h3 class="mdl-card__title-text">Environments</h3>
                       </div>
-                      <div class="mdl-card__supporting-text" style="padding: 0px !important;">
+                      <div class="mdl-card__supporting-text">
 
+                         
 
                           <div class="mdl-grid" style="padding: 0px !important;">
-                              <div class="mdl-cell mdl-cell--12-col" style="padding: 0px !important;">
+                              <div class="mdl-cell mdl-cell--12-col">
+                                 <!-- <table class="mdl-data-table mdl-js-data-table">
+                                      <thead>
+                                      <tr>
+                                          <th class="mdl-data-table__cell&#45;&#45;non-numeric">Name</th>
+                                          <th>Workers</th>
+                                          <th>Type</th>
+                                          <th>Status</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody class="table_body">
+
+                                      </tbody>
+                                  </table>-->
 
                                   <ul class="demo-list-two mdl-list" style="padding: 0px !important;">
-                                     <!-- <li class="mdl-list__item mdl-list__item&#45;&#45;two-line">
-                                        <span class="mdl-list__item-primary-content">
-                                          <i class="material-icons mdl-list__item-avatar">person</i>
-                                          <span>Bryan Cranston</span>
-                                          <span class="mdl-list__item-sub-title" style="margin-top: 10px">62 Episodes <div style="float: right"><i class="material-icons">delete</i></div></span>
-                                          &lt;!&ndash;<span class="mdl-list__item-sub-title" style="margin-top: 10px">62 Episodes <div style="float: right"><i class="material-icons">delete</i></div></span>&ndash;&gt;
-                                        </span>
 
-                                      </li>-->
 
                                   </ul>
-
 
                               </div>
                           </div>
@@ -281,19 +287,12 @@
 
   <script>
 
-  
       jQuery(document).ready(function() {
 
-	        $('body').on('click', '.app_logout', function() {
-          window.location.replace("index.html");
-      });
-
-	  
-       login();
+       invoke_service();
       });
 
 
-/*
 
       $('body').on('click', '.app_logout', function() {
           window.location.replace("index.html");
@@ -303,109 +302,43 @@
           invoke_service();
       });
 
-      $('body').on('click', 'tr.app_row', function() {
-         console.log($(this).find('td.app_name').text());
-         var app = $(this).find('td.app_name').text();
-         var appurl = $(this).find('td').attr('appurl');
-         var status = $(this).find('td').attr('status');
-         var lastUpdateTime = $(this).find('td').attr('lastUpdateTime');
-         var muleVersion = $(this).find('td').attr('muleVersion');
-         var workers = $(this).find('td').attr('workers');
-         var userName = $(this).find('td').attr('userName');
-         location.href = 'app_details1.html?app_name='+app+'&appurl='+appurl+'&status='+status+'&lastUpdateTime='+lastUpdateTime+'&muleVersion='+muleVersion+'&workers='+workers+'&userName='+userName;
+      $('body').on('click', 'li.mdl-list__item', function() {
+         console.log($(this).find('span.app_name').attr('envId'));
+		 console.log($(this).find('span.app_name').attr('envName'));
+		 localStorage.setItem('envId', $(this).find('span.app_name').attr('envId'));
+		 localStorage.setItem('envName', $(this).find('span.app_name').attr('envName'));
+		 location.href='dashboard.html';
+       //  location.href = 'app_details1.html?app_name='+app+'&appurl='+appurl+'&status='+status+'&lastUpdateTime='+lastUpdateTime+'&muleVersion='+muleVersion+'&workers='+workers+'&userName='+userName;
       });
-*/
-      var token;
-      function login(){
-          $('#loadingDiv').show();
-          console.log('{"username":"'+localStorage.getItem('username')+'", "password": "'+localStorage.getItem('password')+'"}');
-         /* $.ajax({
-              type: 'post',
-//              contentType: 'application/json',
-              /!*beforeSend: function (xhr) {
-                  xhr.setRequestHeader ("Authorization", "Basic " + btoa(localStorage.getItem('username') + ":" + localStorage.getItem('password')));
-              },*!/
-              headers: { 'Content-Type': 'application/json' },
-              url: 'http://145.17.113.23:8082/login',
-              data: '{"username":"'+localStorage.getItem('username')+'", "password": "'+localStorage.getItem('password')+'"}',
-              success: function(data) {
-                  console.log($(data).access_token);
-                  $('#loadingDiv').hide();
-//                  show_snackbar(msg);
-              },
-              dataType: 'json',
-              error: function(jqXHR,textStatus,errorThrown) {
-                  $('#loadingDiv').hide();
-
-                  console.log(errorThrown);
-                  console.log(textStatus);
-                  console.log(jqXHR)
-              }
-          });*/
-
-
-          $.ajax({
-              type: "GET",
-              url: 'http://platform-api.cloudhub.io/login?username='+localStorage.getItem('username')+'&password='+localStorage.getItem('password'),
-//              data: JSON.stringify('{"username":"'+localStorage.getItem('username')+'", "password": "'+localStorage.getItem('password')+'"}'),
-//              dataType: "json",
-              success: function(data) {
-//                  console.log(data.access_token);
-                  token = data.access_token;
-                  invoke_service();
-
-//                  show_snackbar(msg);
-              },
-//              dataType: 'json',
-              error: function(jqXHR,textStatus,errorThrown) {
-                  $('#loadingDiv').hide();
-
-                  console.log(errorThrown);
-                  console.log(textStatus);
-                  console.log(jqXHR)
-              }
-          });
-      }
-
-      var htmltext='';
 
       function invoke_service(){
           $('#loadingDiv').show();
           $.ajax({
               type: 'get',
-              contentType: 'application/json',
-              beforeSend: function (xhr) {
-                  xhr.setRequestHeader ("Authorization", "bearer " + token);
-				  xhr.setRequestHeader ("X-ANYPNT-ENV-ID",localStorage.getItem('envId'));
-              },
-              url: 'https://anypoint.mulesoft.com/apiplatform/repository/v2/organizations/990c0e49-c062-480c-8d67-25c6a08eac2e/apis',
+              url: 'http://platform-api.cloudhub.io/envs?username='+localStorage.getItem('username')+'&password='+localStorage.getItem('password'),
               success: function(data) {
-                  console.log(data);
-                  $.each(data.apis, function(key,value) {
-//                      console.log(data.apis[key].name);
-//                      console.log(data.apis[key].audit.created.date);
-
-                      htmltext= htmltext + ' <li class="mdl-list__item mdl-list__item--two-line">'+
+                  var counter =0;
+                  var row ='';
+                  $.each(data.data, function(key,value) {
+                     
+                      row = row +' <li class="mdl-list__item mdl-list__item--two-line" >'+
                           '<span class="mdl-list__item-primary-content">'+
-                          '<span style="color: #656565; font-size: 18px;">'+data.apis[key].name+'</span>';
-
-                          $.each(data.apis[key].versions, function(key1,value1) {
-                              htmltext  = htmltext +'<span class="mdl-list__item-sub-title" style="margin-top: 10px;color: #626dff;font-size: 15px">'+data.apis[key].versions[key1].name+' <div style="float: right"><i class="material-icons" style="color: #d11200">delete</i></div></span>';
-
-                          });
-                        htmltext = htmltext + ' </span>'
-                      '</li>';
-
+                          '<i class="material-icons mdl-list__item-avatar" style="background: #ffffff;color: #5a92ff;">pages</i>'+
+                          '<span class="app_name" envId="'+value.id+'" envName="'+value.name+'">'+value.name+'</span>'+
+                          '</span>'+
+                          
+                          '</li>';
+                          counter++;
                   });
-//console.log(htmltext);
-                  $('.demo-list-two').html(htmltext);
+                  $('.demo-list-two').html(row);
                   $('#loadingDiv').hide();
               },
               error: function(jqXHR,textStatus,errorThrown) {
                   console.log(errorThrown);
                   console.log(textStatus);
                   console.log(jqXHR);
-				  $('#loadingDiv').hide();
+                  alert(textStatus + ' '+errorThrown);
+                  $('#loadingDiv').hide();
               }
           });
 

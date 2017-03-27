@@ -246,8 +246,8 @@
                               <div class="mdl-cell mdl-cell--2-col" style="margin: 0px !important;">
 
                     <span class="mdl-chip mdl-chip--contact">
-                        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">P</span>
-                        <span class="mdl-chip__text">Production</span>
+                        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white mdl-chip__text_start"></span>
+                        <span class="mdl-chip__text"></span>
                     </span>
                               </div>
                               <div class="mdl-cell mdl-cell--2-col" style="margin: 0px !important;">
@@ -302,7 +302,8 @@
   <script>
 
       jQuery(document).ready(function() {
-
+		$('.mdl-chip__text').text(localStorage.getItem('envName'));
+		$('.mdl-chip__text_start').text(localStorage.getItem('envName').charAt(0));
        invoke_service();
       });
 
@@ -337,6 +338,7 @@
               contentType: 'application/json',
               beforeSend: function (xhr) {
                   xhr.setRequestHeader ("Authorization", "Basic " + btoa(localStorage.getItem('username') + ":" + localStorage.getItem('password')));
+				  xhr.setRequestHeader ("X-ANYPNT-ENV-ID",localStorage.getItem('envId'));
               },
               url: 'https://anypoint.mulesoft.com/cloudhub/api/applications',
               success: function(data) {

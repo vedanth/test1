@@ -48,7 +48,7 @@
 			<div class="controls">
 				<div class="input-icon left">
 					<i class="icon-user"></i>
-					<input class="m-wrap placeholder-no-fix username" type="text" placeholder="Username" name="username" id="username" value="suresh" />
+					<input class="m-wrap placeholder-no-fix username" type="text" placeholder="Username" name="username" id="username" value="vedanth" />
 				</div>
 			</div>
 		</div>
@@ -57,7 +57,7 @@
 			<div class="controls">
 				<div class="input-icon left">
 					<i class="icon-lock"></i>
-					<input class="m-wrap placeholder-no-fix password" type="password" placeholder="Password" name="password" value="Test@123"/>
+					<input class="m-wrap placeholder-no-fix password" type="password" placeholder="Password" name="password" value="Scot@Unilever14"/>
 				</div>
 			</div>
 		</div>
@@ -97,9 +97,9 @@
 
         function login(){
             console.log($('#username').val());
-            localStorage.setItem('username', 'ymmud');
+            localStorage.setItem('username', $('input.username').val());
             localStorage.setItem('password', $('input.password').val());
-            window.location.replace("dashboard.html");
+            window.location.replace("chooseEnv.html");
 
         }
 
