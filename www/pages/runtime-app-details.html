@@ -1,0 +1,104 @@
+    <div class="mdl-grid" style="padding: 10px 0px 0px 0px !important;">
+
+        <!--<dialog class="mdl-dialog">
+
+            <div class="mdl-dialog__content">
+                <p>
+                    You are about to stop the application!! Do you really want to proceed?
+                </p>
+            </div>
+            <div class="mdl-dialog__actions">
+                <button type="button" class="mdl-button yes" style="color: #2fb356">Yes</button>
+                <button type="button" class="mdl-button no" style="color: #d32300">No</button>
+            </div>
+        </dialog>-->
+
+        <div class="mdl-cell mdl-cell--12-col" id="page-top-div">
+
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h3 class="mdl-card__title-text"></h3>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <div class="mdl-grid" style="padding: 1px !important;">
+                        <div class="mdl-cell mdl-cell--2-col" style="">Status</div>
+                        <div class="mdl-cell mdl-cell--2-col status" style="font-weight: 600;text-align: center"></div>
+                    </div>
+
+                    <div class="mdl-grid" style="padding: 1px !important;">
+                        <div class="mdl-cell mdl-cell--2-col" style="">No of Workers</div>
+                        <div class="mdl-cell mdl-cell--2-col workers" style="font-weight: 600;text-align: center"></div>
+                    </div>
+                    <div class="mdl-grid" style="padding: 1px !important;">
+                        <div class="mdl-cell mdl-cell--2-col" style="">Owner</div>
+                        <div class="mdl-cell mdl-cell--2-col userName" style="font-weight: 600;text-align: center"></div>
+                    </div>
+                    <div class="mdl-grid" style="padding: 1px !important;">
+                        <div class="mdl-cell mdl-cell--2-col" style="">Last Updated Time</div>
+                        <div class="mdl-cell mdl-cell--2-col lastUpdateTime" style="font-weight: 600;text-align: center"></div>
+                    </div>
+                    <div class="mdl-grid" style="padding: 1px !important;">
+                        <div class="mdl-cell mdl-cell--2-col" style="">Mule Version </div>
+                        <div class="mdl-cell mdl-cell--2-col muleVersion" style="font-weight: 600;text-align: center"></div>
+                    </div>
+                    <div class="mdl-grid" style="padding: 1px !important;">
+                        <div class="mdl-cell mdl-cell--2-col" style="">Application URL </div>
+                        <div class="mdl-cell mdl-cell--2-col appurl" style="word-wrap: break-word; color:#4c30ff;font-weight: 600;text-align: center"></div>
+                    </div>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+
+
+
+                </div>
+                <div class="mdl-card__menu">
+                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons">share</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+            <div id="charts" style="display: none">
+
+                <div class="mdl-grid demo-content">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <canvas id="memory_stats" width="1000" height="700"></canvas>
+                    </div>
+                </div>
+
+                <div class="mdl-grid demo-content">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <canvas id="cpu_stats" width="1000" height="700"></canvas>
+                    </div>
+                </div>
+
+                <div class="mdl-grid demo-content">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <canvas id="mule_messages" width="1000" height="700"></canvas>
+                    </div>
+                </div>
+
+
+
+                <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+                    <div class="mdl-snackbar__text"></div>
+                    <button class="mdl-snackbar__action" type="button"></button>
+                </div>
+
+            </div>
+
+
+
+  <script>
+        $(function(){
+
+            RuntimeAppDetails.init();
+        });
+   </script>

@@ -1,0 +1,532 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Material Design Lite</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="plugins/css/bluemin.css">
+    <link rel="stylesheet" href="plugins/css/styles.css">
+    <style>
+
+
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      /*margin-right: 40px;*/
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+
+        #loadingDiv{
+            position:absolute;
+            top:0px;
+            right:0px;
+            width:100%;
+            height:100%;
+            background-color: rgba(220, 220, 220, 0.9);
+            background-image:url('spinner.gif');
+            background-repeat:no-repeat;
+            background-position:center;
+            z-index:10000000;
+            opacity: 0.4;
+            filter: alpha(opacity=40); /* For IE8 and earlier */
+        }
+
+    .demo-card-wide.mdl-card {
+        /*width: 512px;*/
+    }
+    .demo-card-wide > .mdl-card__title {
+        color: #44638c;
+        /*height: 176px;*/
+
+    }
+    .demo-card-wide > .mdl-card__menu {
+        color: #fff;
+    }
+
+    </style>
+  </head>
+  <body>
+
+  <div id="loadingDiv" style="display: none"></div>
+
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+      <header class="demo-header mdl-layout__header mdl-color--blue-600 mdl-color-text--white">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title"></span>
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" id="search">
+              <label class="mdl-textfield__label" for="search">Enter your query...</label>
+            </div>
+          </div>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+            <!--<li class="mdl-menu__item">Profile</li>-->
+            <!--<li class="mdl-menu__item">Settings</li>-->
+            <li class="mdl-menu__item app_logout">Logout</li>
+          </ul>
+        </div>
+      </header>
+      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+          <header class="demo-drawer-header">
+              <span style="font-size: 19px;padding: 10px">Anypoint Platform </span>
+              <img src="images/user-icon-png-pnglogocom.png" class="demo-avatar">
+
+              <div class="demo-avatar-dropdown">
+                  <span>Suresh Jaganathan</span>
+                  <div class="mdl-layout-spacer"></div>
+           <!-- <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button&#45;&#45;icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>-->
+           <!-- <ul class="mdl-menu mdl-menu&#45;&#45;bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+              <li class="mdl-menu__item">hello@example.com</li>
+              <li class="mdl-menu__item">info@example.com</li>
+              <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
+            </ul>-->
+          </div>
+        </header>
+        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+            <a class="mdl-navigation__link" href="dashboard.html"><i class="mdl-color-text--white material-icons" role="presentation">restore</i>Dashboard</a>
+            <a class="mdl-navigation__link" href="pages/api-runtime.html"><i class="mdl-color-text--white material-icons" role="presentation">home</i>Runtime Manager</a>
+            <a class="mdl-navigation__link" href="api_manager.html"><i class="mdl-color-text--white material-icons" role="presentation">inbox</i>API Manager</a>
+          <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;white material-icons" role="presentation">delete</i>Trash</a>-->
+          <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;white material-icons" role="presentation">report</i>Spam</a>-->
+          <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>-->
+          <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>-->
+          <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>-->
+          <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>-->
+          <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">people</i>Social</a>-->
+          <!--<div class="mdl-layout-spacer"></div>-->
+          <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>-->
+        </nav>
+      </div>
+
+      <main class="mdl-layout__content mdl-color--white">
+
+
+          <div class="mdl-grid" style="padding: 1px !important;">
+              <div class="mdl-cell mdl-cell--12-col">
+
+                  <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                      <div class="mdl-card__title">
+                          <h3 class="mdl-card__title-text">Application Details</h3>
+                      </div>
+                      <div class="mdl-card__supporting-text">
+                          <div class="mdl-grid" style="padding: 1px !important;">
+                              <div class="mdl-cell mdl-cell--2-col" style="">Status</div>
+                              <div class="mdl-cell mdl-cell--2-col status" style="font-weight: 500;text-align: center"></div>
+                          </div>
+
+                          <div class="mdl-grid" style="padding: 1px !important;">
+                              <div class="mdl-cell mdl-cell--2-col" style="">No of Workers</div>
+                              <div class="mdl-cell mdl-cell--2-col workers" style="font-weight: 500;text-align: center"></div>
+                          </div>
+                          <div class="mdl-grid" style="padding: 1px !important;">
+                              <div class="mdl-cell mdl-cell--2-col" style="">Owner</div>
+                              <div class="mdl-cell mdl-cell--2-col userName" style="font-weight: 500;text-align: center"></div>
+                          </div>
+                          <div class="mdl-grid" style="padding: 1px !important;">
+                              <div class="mdl-cell mdl-cell--2-col" style="">Last Updated Time</div>
+                              <div class="mdl-cell mdl-cell--2-col lastUpdateTime" style="font-weight: 500;text-align: center"></div>
+                          </div>
+                          <div class="mdl-grid" style="padding: 1px !important;">
+                              <div class="mdl-cell mdl-cell--2-col" style="">Mule Version </div>
+                              <div class="mdl-cell mdl-cell--2-col muleVersion" style="font-weight: 500;text-align: center"></div>
+                          </div>
+                          <div class="mdl-grid" style="padding: 1px !important;">
+                              <div class="mdl-cell mdl-cell--2-col" style="">Application URL </div>
+                              <div class="mdl-cell mdl-cell--2-col appurl" style="word-wrap: break-word; color:#4c30ff;font-weight: 500;text-align: center"></div>
+                          </div>
+                      </div>
+                      <div class="mdl-card__actions mdl-card--border">
+
+
+
+                      </div>
+                      <div class="mdl-card__menu">
+                          <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                              <i class="material-icons">share</i>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+
+        <div class="mdl-grid demo-content">
+          <div class="mdl-cell mdl-cell--12-col">
+              <canvas id="myChart" width="1000" height="700"></canvas>
+          </div>
+        </div>
+
+          <div class="mdl-grid demo-content">
+              <div class="mdl-cell mdl-cell--12-col">
+                  <canvas id="myChart1" width="1000" height="700"></canvas>
+              </div>
+          </div>
+
+
+          <div class="mdl-grid demo-content">
+              <div class="mdl-cell mdl-cell--12-col">
+                  <canvas id="myChart2" width="1000" height="700"></canvas>
+              </div>
+          </div>
+
+          <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+              <div class="mdl-snackbar__text"></div>
+              <button class="mdl-snackbar__action" type="button"></button>
+          </div>
+
+      </main>
+    </div>
+
+
+  <script src="plugins/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+  <!--<script src="js/bootstrap.min.js" type="text/javascript"></script>-->
+  <script src="plugins/js/chartjs/chart.min.js" type="text/javascript"></script>
+  <script src="plugins/js/materialmin.js"></script>
+
+
+
+  <script>
+
+      var params;
+      jQuery(document).ready(function() {
+          $('#loadingDiv').show();
+          var url = document.location.href;
+          params = url.split('?')[1].split('&')[0].split('=')[1];
+          $('.mdl-layout-title').text(params);
+
+          var queryParams = url.split('?')[1].split('&');
+          console.log(queryParams);
+          var appurl = queryParams[1].split('=')[1];
+          var status = queryParams[2].split('=')[1];
+          var lastUpdateTime = queryParams[3].split('=')[1];
+          var muleVersion = queryParams[4].split('=')[1];
+          var workers = queryParams[5].split('=')[1];
+          var userName = queryParams[6].split('=')[1];
+
+          $('.appurl').text(appurl);
+          var newDate = new Date(parseInt(lastUpdateTime));
+          $('.lastUpdateTime').text(newDate.toUTCString());
+          $('.muleVersion').text(muleVersion);
+          $('.workers').text(workers);
+          $('.userName').text(userName);
+
+          var tmpl;
+          if(status == 'STARTED'){
+              tmpl = '<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect stop-app" style="margin-left: 70px; color: #c95408;text-align: center;">'+
+                  '<img src="images/stop-button.png" height="35px" width="35px"> Stop Application'+
+                  '</a>';
+              $('.status').append('<span style="color: #1fb55f">'+status+'</span>');
+          }else{
+              tmpl = '<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect start-app" style="margin-left: 70px; color: #1fb55f;text-align: center;">'+
+                  '<img src="images/play_button.png" height="35px" width="35px"> Start Application'+
+              '</a>';
+              $('.status').append('<span style="color: #c95408">'+status+'</span>');
+          }
+
+          $('.mdl-card--border').append(tmpl);
+
+       invoke_service();
+      });
+
+      $('body').on('click', '.app_logout', function() {
+          window.location.replace("index.html");
+      });
+
+      $('body').on('click', 'a.stop-app', function() {
+          manage_app('stop','Application will be undeployed');
+      });
+
+      $('body').on('click', 'a.start-app', function() {
+          manage_app('start', 'Application will be started');
+      });
+
+      function manage_app(cmd, msg){
+          $('#loadingDiv').show();
+          $.ajax({
+              type: 'post',
+//              contentType: 'application/json',
+              beforeSend: function (xhr) {
+                  xhr.setRequestHeader ("Authorization", "Basic " + btoa(localStorage.getItem('username') + ":" + localStorage.getItem('password')));
+				  xhr.setRequestHeader ("X-ANYPNT-ENV-ID",localStorage.getItem('envId'));
+              },
+              headers: { 'Content-Type': 'application/json' },
+              url: 'https://anypoint.mulesoft.com/cloudhub/api/applications/'+params+'/status',
+              data: '{"status":"'+cmd+'", "staticIpAddress": ""}',
+              success: function(data) {
+
+
+                  $('#loadingDiv').hide();
+                  show_snackbar(msg);
+              },
+              error: function(jqXHR,textStatus,errorThrown) {
+                  $('#loadingDiv').hide();
+                  show_snackbar(msg);
+                  console.log(errorThrown);
+                  console.log(textStatus);
+                  console.log(jqXHR)
+              }
+          });
+      }
+
+
+      function show_snackbar(msg){
+          var snackbarContainer = document.querySelector('#demo-toast-example');
+          var showToastButton = document.querySelector('#demo-show-toast');
+          var data = {message: msg };
+          snackbarContainer.MaterialSnackbar.showSnackbar(data);
+      }
+      function invoke_service(){
+
+          $.ajax({
+              type: 'get',
+              contentType: 'application/json',
+              beforeSend: function (xhr) {
+                  xhr.setRequestHeader ("Authorization", "Basic " + btoa(localStorage.getItem('username') + ":" + localStorage.getItem('password')));
+				  xhr.setRequestHeader ("X-ANYPNT-ENV-ID",localStorage.getItem('envId'));
+              },
+              url: 'https://anypoint.mulesoft.com/cloudhub/api/v2/applications/'+params+'/dashboardStats',
+              success: function(data) {
+
+                  if(data.workerStatistics[0] != null){
+                      var networkIn = data.workerStatistics[0].statistics.networkIn;
+                      var networkOut = data.workerStatistics[0].statistics.networkOut;
+                      memoryChart(networkIn, networkOut, 'Network In (KB)', 'Network Out (KB)');
+
+                      var cpu = data.workerStatistics[0].statistics.cpu;
+                      memoryChart_single(cpu,'CPU Usage','#20ba74','myChart1');
+
+                      var memory = data.workerStatistics[0].statistics.memoryPercentageUsed;
+                      memoryChart_single(memory,'Memory Used (%)','#8625ff','myChart2');
+
+                  }
+
+                 /* var row ='';
+                  $.each(data, function(key,value) {
+                      row = row +' <tr class="app_row"> '+
+                          '<td class="mdl-data-table__cell&#45;&#45;non-numeric app_name" lastUpdateTime="'+value.lastUpdateTime+'"' +
+                          ' muleVersion="'+value.muleVersion+'" appurl="'+value.href+'" status="'+value.status+'" workers="'+value.workers+'">'+value.domain+'</td>'+
+                          '<td>'+value.workers+'</td>'+
+                          '<td>'+value.workerType+'</td>'+
+                          '<td><span class="';
+                      if(value.status == 'STARTED'){
+                          row =  row + 'mdl-badge-green';
+                      }else{
+                          row =  row + 'mdl-badge-red';
+                      }
+                      row = row + '" style="background: #000000 !important;" data-badge=""></span></td>'+
+                          '</tr>';
+                  });
+                  $('.table_body').append(row);
+                */
+                  $('#loadingDiv').hide();
+              },
+              error: function(jqXHR,textStatus,errorThrown) {
+                  console.log(errorThrown);
+                  console.log(textStatus);
+                  console.log(jqXHR)
+              }
+          });
+
+
+      }
+
+      function memoryChart(networkIn, networkOut, label1, label2){
+
+          var nIn = [];
+          var nOut = [];
+          var nInCounter =8;
+          var nOutCounter =8;
+          var label=[];
+
+          $.each(networkIn, function(k, v) {
+              if(v > -1 && nInCounter > 0){
+                  nIn.push(v);
+                  nInCounter--;
+                  var d = new Date(parseInt(k));
+                  label.push(d.getHours()+':'+d.getMinutes()+':'+d.getSeconds())
+              }
+
+          });
+
+          if(networkOut != null){
+              $.each(networkOut, function(k, v) {
+                  if(v > -1 && nOutCounter > 0){
+                      nOut.push(v);
+                      nOutCounter--;
+                      console.log('--> '+v);
+                  }
+
+              });
+          }
+
+          var ctx = $("#myChart");
+
+          var data = {
+              labels: label,
+              datasets: [
+                  {
+                      label: label1,
+                      fill: false,
+                      lineTension: 0.1,
+                      backgroundColor: "#ffd778",
+                      borderColor: "#ffd778",
+                      borderCapStyle: 'butt',
+                      borderDash: [],
+                      borderDashOffset: 0.0,
+                      borderJoinStyle: 'miter',
+                      pointBorderColor: "#ffd778",
+                      pointBackgroundColor: "#fff",
+                      pointBorderWidth: 1,
+                      pointHoverRadius: 5,
+                      pointHoverBackgroundColor: "#ffd778",
+                      pointHoverBorderColor: "#ffd778",
+                      pointHoverBorderWidth: 2,
+                      pointRadius: 1,
+                      pointHitRadius: 10,
+                      data: nIn,
+                      spanGaps: false
+                  },
+                  {
+                      label: label2,
+                      fill: false,
+                      lineTension: 0.1,
+                      backgroundColor: "#5eb5ef",
+                      borderColor: "#5eb5ef",
+                      borderCapStyle: 'butt',
+                      borderDash: [],
+                      borderDashOffset: 0.0,
+                      borderJoinStyle: 'miter',
+                      pointBorderColor: "#5eb5ef",
+                      pointBackgroundColor: "#fff",
+                      pointBorderWidth: 1,
+                      pointHoverRadius: 5,
+                      pointHoverBackgroundColor: "#5eb5ef",
+                      pointHoverBorderColor: "#ffd778",
+                      pointHoverBorderWidth: 2,
+                      pointRadius: 1,
+                      pointHitRadius: 10,
+                      data: nOut,
+                      spanGaps: false
+                  }
+              ]
+          };
+
+          var myLineChart = new Chart(ctx, {
+              type: 'line',
+              data: data
+          });
+      }
+
+      function memoryChart_single(networkIn, label1, color, chartid){
+
+          var nIn = [];
+          var nOut = [];
+          var nInCounter =8;
+          var nOutCounter =8;
+          var label=[];
+
+          $.each(networkIn, function(k, v) {
+              if(v > -1 && nInCounter > 0){
+                  nIn.push(v);
+                  nInCounter--;
+                  var d = new Date(parseInt(k));
+                  label.push(d.getHours()+':'+d.getMinutes()+':'+d.getSeconds())
+              }
+
+          });
+
+          var ctx = $("#"+chartid);
+
+          var data = {
+              labels: label,
+              datasets: [
+                  {
+                      label: label1,
+                      fill: false,
+                      lineTension: 0.1,
+                      backgroundColor: color,
+                      borderColor: color,
+                      borderCapStyle: 'butt',
+                      borderDash: [],
+                      borderDashOffset: 0.0,
+                      borderJoinStyle: 'miter',
+                      pointBorderColor: color,
+                      pointBackgroundColor: "#fff",
+                      pointBorderWidth: 1,
+                      pointHoverRadius: 5,
+                      pointHoverBackgroundColor: color,
+                      pointHoverBorderColor: color,
+                      pointHoverBorderWidth: 2,
+                      pointRadius: 1,
+                      pointHitRadius: 10,
+                      data: nIn,
+                      spanGaps: false
+                  }
+              ]
+          };
+
+          var myLineChart = new Chart(ctx, {
+              type: 'line',
+              data: data
+          });
+      }
+  </script>
+  </body>
+</html>
