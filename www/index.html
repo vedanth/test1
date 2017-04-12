@@ -1,111 +1,51 @@
 <!DOCTYPE html>
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-<!-- BEGIN HEAD -->
+<html >
 <head>
-	<meta charset="utf-8" />
-	<title>S&D | Login Page</title>
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-	<meta content="" name="description" />
-	<meta content="" name="author" />
-	<!-- BEGIN GLOBAL MANDATORY STYLES -->
-	<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-	<!--<link href="assets/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>-->
-	<link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-	<link href="css/style-metro.css" rel="stylesheet" type="text/css"/>
-	<link href="css/style.css" rel="stylesheet" type="text/css"/>
-	<!--<link href="assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>-->
-	<!--<link href="assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>-->
-	<!--<link href="assets/plugins/uniform/css/uniform.default.min.css" rel="stylesheet" type="text/css"/>-->
-	<!-- END GLOBAL MANDATORY STYLES -->
-	<!-- BEGIN PAGE LEVEL STYLES -->
-	<link href="css/login.css" rel="stylesheet" type="text/css"/>
-	<!-- END PAGE LEVEL STYLES -->
-	<link rel="shortcut icon" href="favicon.ico" />
-</head>
-<!-- END HEAD -->
-<!-- BEGIN BODY -->
-<body class="login">
-	<!-- BEGIN LOGO -->
-	<div class="logo">
-	</div>
-	<!-- END LOGO -->
-	<!-- BEGIN LOGIN #ffb848-->
-	<div class="content">
-		<!-- BEGIN LOGIN FORM -->
+    <meta charset="UTF-8">
+    <title>Anypoint Platform - Sign In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" href="css/login.css">
 
-        <div style="text-align: center">
-            <img src="images/mule.png">
+</head>
+
+<body>
+<div class="cont">
+    <div class="demo">
+        <div class="login">
+            <img src="images/mulesoft-m-small.png" style="margin-left: 120px; margin-top: 40px; height: 70px; width: 70px" >
+                <div class="login__form">
+                    <div class="login__row_title">
+                        <h4 class="login_title">Anypoint Platform</h4>
+                    </div>
+                    <div class="error-message">
+                        <h5 class="error_message_text"></h5>
+                    </div>
+                    <div class="login__row">
+                        <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+                            <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+                        </svg>
+                        <input type="text" class="login__input username" placeholder="Username" name="username" value="msch032017"/>
+                    </div>
+                    <div class="login__row">
+                        <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
+                            <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
+                        </svg>
+                        <input type="password" class="login__input password" placeholder="Password" name="password" value="Test@123"/>
+                    </div>
+                    <button type="button" class="login__submit">Sign In</button>
+                </div>
         </div>
 
-		<!--<form class="form-vertical1" >
+    </div>
+</div>
 
-		</form>-->
+<script src="plugins/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="plugins/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="js/login.js" type="text/javascript"></script>
 
-		<h3 class="form-title" style="text-align: center;color: #808080 ; font-size: 23px;">Anypoint Platform</h3>
-		<div class="control-group">
-			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-			<label class="control-label visible-ie8 visible-ie9">Username</label>
-			<div class="controls">
-				<div class="input-icon left">
-					<i class="icon-user"></i>
-					<input class="m-wrap placeholder-no-fix username" type="text" placeholder="Username" name="username" id="username" value="vedanth" />
-				</div>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label visible-ie8 visible-ie9">Password</label>
-			<div class="controls">
-				<div class="input-icon left">
-					<i class="icon-lock"></i>
-					<input class="m-wrap placeholder-no-fix password" type="password" placeholder="Password" name="password" value="Scot@Unilever14"/>
-				</div>
-			</div>
-		</div>
-		<button class="btn btn-block red" onclick="login()">
-			Sign In <i class="m-icon-swapright m-icon-white"></i>
-		</button>
+<script>
+    Login.init();
+</script>
 
-
-		<div class="setipaddr" style="text-align:center; margin-top: 70px" >
-
-		</div>
-
-		<!-- END LOGIN FORM -->
-
-	</div>
-	<!-- END LOGIN -->
-	<!-- BEGIN COPYRIGHT -->
-	<div class="copyright">
-
-	</div>
-	<!-- END COPYRIGHT -->
-	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-	<!-- BEGIN CORE PLUGINS -->
-	<script src="js/jquery-1.10.1.min.js" type="text/javascript"></script>
-	<!--<script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      -->
-	<!--<script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>-->
-	<!-- END JAVASCRIPTS -->
-    <!--<script src="js/login.js" type="text/javascript"></script>-->
-    <script src="js/jquery.validate.min.js" type="text/javascript"></script>
-
-    <script>
-        jQuery(document).ready(function() {
-//            App.init();
-//            Login.init();
-        });
-
-
-        function login(){
-            console.log($('#username').val());
-            localStorage.setItem('username', $('input.username').val());
-            localStorage.setItem('password', $('input.password').val());
-            window.location.replace("chooseEnv.html");
-
-        }
-
-
-
-    </script>
 </body>
-<!-- END BODY -->
 </html>
