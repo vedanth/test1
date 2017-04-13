@@ -14,6 +14,7 @@ var ChooseEnv = function () {
 
 
                 });*/
+
                 BusinessGroups.getOrganizations(function(data){
                     var selectedOrgId = data.user.organization.id;
                     var selectedOrgName = data.user.organization.name;

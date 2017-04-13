@@ -8,8 +8,8 @@ var Common = function () {
                 type: 'get',
                 url: APPLICATION_HOST+url,
                 beforeSend: function(xhr) {
-                    if(url.indexOf('/apiplatform') >= 0 ){
-                        xhr.setRequestHeader ("Authorization", "bearer " + ACCESS_TOKEN);
+                    if(url.indexOf('/apiplatform') >= 0 || url.indexOf('/analytics') >= 0){
+                        xhr.setRequestHeader ("Authorization", "Bearer " + ACCESS_TOKEN);
                     }else{
                         xhr.setRequestHeader ("Authorization", "Basic " + btoa(localStorage.getItem('username') + ":" + localStorage.getItem('password')));
                     }
