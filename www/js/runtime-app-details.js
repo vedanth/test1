@@ -39,10 +39,9 @@ var RuntimeAppDetails = function () {
                     var memory = data.workerStatistics[0].statistics.memoryPercentageUsed;
                     RuntimeAppDetails.plotChart(memory,'Memory Usage (%)','#8D8CFF','memory_stats', true);
 
-                    $('#loadingDiv').hide();
                     $('#charts').show();
-
                 }
+                $('#loadingDiv').hide();
             });
         },
         plotChart: function(dataset, label1, color, chartid, fixedYAxis){
@@ -111,18 +110,19 @@ var RuntimeAppDetails = function () {
                 options: options
             });
         },
+        showSnackBar1: function(msg){
+            var snackbarContainer = document.querySelector('#demo-toast-example');
+            console.log(snackbarContainer);
+            var showToastButton = document.querySelector('#demo-show-toast');
+            var data = {message: msg };
+            snackbarContainer.MaterialSnackbar.showSnackbar(data);
+        },
         manageApp: function(appid,cmd, msg) {
             Common.ajaxPost('/cloudhub/api/applications/'+appid+'/status',
                 '{"status":"'+cmd+'", "staticIpAddress": ""}', function(){
                     $('#loadingDiv').hide();
-                    this.showSnackBar(msg);
+                    RuntimeAppDetails.showSnackBar1(msg);
                 });
-        },
-        showSnackBar: function(msg){
-            var snackbarContainer = document.querySelector('#demo-toast-example');
-            var showToastButton = document.querySelector('#demo-show-toast');
-            var data = {message: msg };
-            snackbarContainer.MaterialSnackbar.showSnackbar(data);
         },
         init: function() {
 

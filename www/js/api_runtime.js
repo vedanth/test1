@@ -11,16 +11,16 @@ var ApiRuntime = function () {
                 $.each(data, function(key,value) {
                     var date = new Date(value.lastUpdateTime);
 
-                    row = row +' <li class="mdl-list__item mdl-list__item--two-line runtime_app" >'+
+                    row = row +'<li class="mdl-list__item mdl-list__item--two-line runtime_app" >'+
                         '<span class="mdl-list__item-primary-content">'+
-                        '<i class="material-icons mdl-list__item-avatar" style="background: #ffffff;color: #5a92ff;">filter_drama</i>'+
+                        '<a href="#/runtime-app" onclick="return ApiRuntime.selectRuntimeApp(this);" style="text-decoration: none;color: #000000"> <i class="material-icons mdl-list__item-avatar" style="background: #ffffff;color: #5a92ff;">filter_drama</i>'+
                         '<span class="app_name" index="'+key+'">'+value.domain+'</span>'+
                         '<span class="mdl-list__item-sub-title" style="display:none; margin-top: 10px;font-size: 13px; font-weight: 700"><i class="fa icon-calendar-empty" > <span style="font-size: 15px; color: #4773a3">'+date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+'</span></i><span></span></span>'+
                         '</span>'+
                         '<span class="mdl-list__item-secondary-content">';
 
                     if(counter == 0){
-                        row = row + '<span class="mdl-list__item-secondary-info">Status</span>';
+//                        row = row + '<span class="mdl-list__item-secondary-info">Status</span>';
                     }
 
                     if(value.status == 'STARTED'){
@@ -30,7 +30,7 @@ var ApiRuntime = function () {
                     }
 
 
-                    row = row + '</span>'+
+                    row = row + '</a></span>'+
                         '</li>';
                     counter++;
                 });
@@ -41,6 +41,10 @@ var ApiRuntime = function () {
 
 
         },
+        selectRuntimeApp: function(evt){
+            RUNTIME_APP_DETAILS = RUNTIME_APP_RESPONSE[$(evt).find('span.app_name').attr('index')];
+            return true;
+        },
         init: function() {
 
             $('.mdl-layout-title').text('Runtime Manager');
@@ -48,9 +52,10 @@ var ApiRuntime = function () {
             $('.mdl-chip__text_start').text(localStorage.getItem('selectedEnvName').charAt(0));
             $('.mdl-chip__text').text(localStorage.getItem('selectedEnvName'));
 
-
+            Common.initSearch('choose-app-filter');
 
             ApiRuntime.getApplications();
+/*
 
             $('body').unbind().on('click','li.runtime_app', function() {
                 RUNTIME_APP_DETAILS = RUNTIME_APP_RESPONSE[$(this).find('span.app_name').attr('index')];
@@ -61,6 +66,10 @@ var ApiRuntime = function () {
                 Common.loadContent('pages/choose-env.html');
             });
 
+            $('body').on('click','.table-refresh', function() {
+                ApiRuntime.getApplications();
+            });
+*/
             $('body').on('click','.table-refresh', function() {
                 ApiRuntime.getApplications();
             });

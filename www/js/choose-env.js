@@ -35,11 +35,11 @@ var ChooseEnv = function () {
                 var allEnvs = '';
                 var separator='';
                 $.each(data.data, function(key,value) {
-                    row = row +' <li class="mdl-list__item app_name" >'+
+                    row = row +'<a style="text-decoration: none;" href="#/runtime" onclick="return ChooseEnv.selectEnv(this);"> <li class="mdl-list__item app_name jsearch-field" ng-controller="myCtrl"><div>'+
                         '<span class="mdl-list__item-primary-content ch_environaments" envId="'+value.id+'" envName="'+value.name+'">'+
                         '<i class="material-icons mdl-list__item-avatar" style="background: #ffffff;color: #5a92ff;">pages</i>'+
                         value.name+'</span>'+
-                        '</li>';
+                        '</div></li></a>';
                     allEnvs = allEnvs + value.id + '~' + value.name+ separator ;
                     separator = ',';
                     localStorage.setItem('selectedEnvId', value.id);
@@ -47,19 +47,31 @@ var ChooseEnv = function () {
                 });
                 localStorage.setItem('allEnvs', allEnvs);
                 $('.demo-list-two').html(row);
+
                 $('#loadingDiv').hide();
             });
         },
+        selectEnv: function(evt){
+//            alert($(evt).find('span').attr('envName'));
+            console.log($(evt).find('span').attr('envId'));
+            console.log($(evt).find('span').attr('envName'));
+
+            localStorage.setItem('selectedEnvId', $(evt).find('span').attr('envId'));
+            localStorage.setItem('selectedEnvName', $(evt).find('span').attr('envName'));
+            return true;
+        },
         init: function() {
 
+            console.log('Init .....');
             $('.mdl-layout-title').text('Select Environment');
             ChooseEnv.getEnvironments();
+            Common.initSearch('choose-env-filter');
 
-            $('body').unbind().on('click','span.ch_environaments', function(){
+            /*$('body').unbind().on('click','span.ch_environaments', function(){
                 localStorage.setItem('selectedEnvId', $(this).attr('envId'));
                 localStorage.setItem('selectedEnvName', $(this).attr('envName'));
                 Common.loadContent('pages/api-runtime.html');
-            });
+            });*/
         }
     };
 

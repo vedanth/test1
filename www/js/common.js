@@ -1,6 +1,18 @@
 var Common = function () {
 
     return {
+        initSearch: function(inputId){
+            jQuery("#"+inputId).keyup(function () {
+                var filter = jQuery(this).val();
+                jQuery("ul li").each(function () {
+                    if (jQuery(this).text().search(new RegExp(filter, "i")) < 0) {
+                        jQuery(this).hide();
+                    } else {
+                        jQuery(this).show()
+                    }
+                });
+            });
+        },
         ajaxGet: function(url, callback) {
 
             $('#loadingDiv').show();
@@ -54,14 +66,14 @@ var Common = function () {
             });
         },
         loadContent: function (pagename, fromMenu){
-            if(fromMenu != null){
+            /*if(fromMenu != null){
                 var d = document.querySelector('.mdl-layout');
                 d.MaterialLayout.toggleDrawer();
             }
-            $('.main_content').load(pagename);
+            $('.main_content').load(pagename);*/
         },
         init: function(){
-            Common.loadContent('pages/choose-env.html');
+//            Common.loadContent('pages/choose-env.html');
         },
         logout: function(){
             localStorage.removeItem('selectedOrgId');

@@ -8,9 +8,9 @@
             <div class="mdl-card__supporting-text">
 
                 <div class="mdl-grid demo-content" style="padding-top: 7px !important; margin: 0px !important;">
-                    <div class="mdl-cell mdl-cell--2-col" style="margin: 0px !important;">
+                    <div class="mdl-cell mdl-cell--2-col" style="margin: 0px !important;" ng-controller="apiRuntime">
 
-                    <span class="mdl-chip mdl-chip--contact choose-env">
+                    <span class="mdl-chip mdl-chip--contact choose-env" ng-click="chooseEnv()">
                         <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white mdl-chip__text_start"></span>
                         <span class="mdl-chip__text"></span>
                     </span>
@@ -25,6 +25,10 @@
 
                 <div class="mdl-grid" style="padding: 0px !important;">
                     <div class="mdl-cell mdl-cell--12-col">
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="choose-app-filter" placeholder="Search...">
+                        </div>
 
                         <ul class="demo-list-two mdl-list" style="padding: 0px !important;">
 

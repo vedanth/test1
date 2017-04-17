@@ -141,7 +141,7 @@ var ApiDetails = function () {
         },
         init: function() {
 
-            $('.mdl-layout-title').text('API Administration');
+            $('.mdl-layout-title').text('API Analytics');
             ApiDetails.getApiDetails();
             ApiDetails.getApiStats();
 
