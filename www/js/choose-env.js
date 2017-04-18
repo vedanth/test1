@@ -28,6 +28,9 @@ var ChooseEnv = function () {
             }
         },
         getEnv: function(){
+
+            $('.ch_username').text(localStorage.getItem('firstname') + ' '+ localStorage.getItem('lastname'));
+
             var selectedOrgId = localStorage.getItem('selectedOrgId');
             Common.ajaxGet('/accounts/api/organizations/'+selectedOrgId+'/environments', function(data){
 
@@ -52,9 +55,6 @@ var ChooseEnv = function () {
             });
         },
         selectEnv: function(evt){
-//            alert($(evt).find('span').attr('envName'));
-            console.log($(evt).find('span').attr('envId'));
-            console.log($(evt).find('span').attr('envName'));
 
             localStorage.setItem('selectedEnvId', $(evt).find('span').attr('envId'));
             localStorage.setItem('selectedEnvName', $(evt).find('span').attr('envName'));
@@ -62,16 +62,10 @@ var ChooseEnv = function () {
         },
         init: function() {
 
-            console.log('Init .....');
             $('.mdl-layout-title').text('Select Environment');
             ChooseEnv.getEnvironments();
             Common.initSearch('choose-env-filter');
 
-            /*$('body').unbind().on('click','span.ch_environaments', function(){
-                localStorage.setItem('selectedEnvId', $(this).attr('envId'));
-                localStorage.setItem('selectedEnvName', $(this).attr('envName'));
-                Common.loadContent('pages/api-runtime.html');
-            });*/
         }
     };
 

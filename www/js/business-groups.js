@@ -5,8 +5,8 @@ var BusinessGroups = function () {
 
             Common.ajaxGet('/accounts/api/me',function(data) {
 
-                localStorage.setItem('firstname','data.user.firstName');
-                localStorage.setItem('lastname','data.user.lastName');
+                localStorage.setItem('firstname',data.user.firstName);
+                localStorage.setItem('lastname',data.user.lastName);
                 $('.ch_username').text(data.user.firstName + ' '+ data.user.lastName);
 
                 if(callback == null){
