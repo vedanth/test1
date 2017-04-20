@@ -26,15 +26,22 @@ var Common = function () {
                         xhr.setRequestHeader ("Authorization", "Basic " + btoa(localStorage.getItem('username') + ":" + localStorage.getItem('password')));
                     }
                     xhr.setRequestHeader ("X-ANYPNT-ENV-ID",localStorage.getItem('selectedEnvId'));
+                    xhr.setRequestHeader ("Content-Type",'application/json');
                 },
                 success: function(data) {
                     callback(data);
                 },
                 error: function(jqXHR,textStatus,errorThrown) {
-                    console.log(errorThrown);
-                    console.log(textStatus);
-                    console.log(jqXHR);
-                    alert('Error Processing the request.');
+                   console.log(jqXHR.status);
+                    console.log(jqXHR.readyState);
+                    if(jqXHR.readyState ==  0){
+                        alert('Check internet connection');
+                    }
+                    else if(jqXHR.readyState ==  4){
+                        if(jqXHR.status == 500){
+                            alert('Unable to process the request');
+                        }
+                    }
                     $('#loadingDiv').hide();
                 }
             });
@@ -55,12 +62,16 @@ var Common = function () {
                 },
                 data: data,
                 error: function(jqXHR,textStatus,errorThrown) {
-                    console.log(errorThrown);
-                    console.log(textStatus);
-                    console.log(jqXHR);
-                    callback(data);// only post request is for start/stop application, which has null response. so calling callback on error.
-                    // Dont use this for other POST requests
-//                    alert('Error Processing the request.');
+                    console.log(jqXHR.status);
+                    console.log(jqXHR.readyState);
+                    if(jqXHR.readyState ==  0){
+                        alert('Check internet connection');
+                    }
+                    else if(jqXHR.readyState ==  4){
+                        if(jqXHR.status == 500){
+                            alert('Invalid Username or Password');
+                        }
+                    }
                     $('#loadingDiv').hide();
                 }
             });

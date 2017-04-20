@@ -40,28 +40,27 @@ cloudHubApp.config(function($routeProvider) {
 
 // create the controller and inject Angular's $scope
 cloudHubApp.controller('chooseEnv', function($scope, $location) {
-    console.log('CHOOSE ENCV');
+
 });
 
 cloudHubApp.controller('apiRuntime', function($scope, $location) {
-    console.log('API RUNTIME');
     $scope.chooseEnv = function(){
         $location.url('/business-group');
     }
 });
 
 cloudHubApp.controller('runtimeApp', function($scope) {
-    console.log('API RUNTIME APP..');
+
 });
 
 cloudHubApp.controller('businessGroups', function($scope) {
-    console.log('BUSINESS GROUPS..');
+
 });
 
 cloudHubApp.controller('APIManager', function($scope) {
-    console.log('APIManager..');
+
 });
 
 cloudHubApp.controller('APIDetails', function($scope) {
-    console.log('APIDetails..');
+
 });

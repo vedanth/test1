@@ -4,16 +4,6 @@ var ChooseEnv = function () {
         getEnvironments: function() {
 
             if(localStorage.getItem('selectedOrgId') == null || localStorage.getItem('selectedOrgId') == ''){
-                /*Common.ajaxGet(APPLICATION_HOST+'/accounts/api/me',function(data) {
-                    $('.ch_username').text(data.user.firstName + ' '+ data.user.lastName);
-                    var selectedOrgId = data.user.organization.id;
-                    var selectedOrgName = data.user.organization.name;
-
-                    localStorage.setItem('selectedOrgId', selectedOrgId);
-                    localStorage.setItem('selectedOrgName', selectedOrgName);
-
-
-                });*/
 
                 BusinessGroups.getOrganizations(function(data){
                     var selectedOrgId = data.user.organization.id;

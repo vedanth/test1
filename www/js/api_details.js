@@ -67,7 +67,7 @@ var ApiDetails = function () {
 
             for (var key in data) {
                 if(data.hasOwnProperty(key)) {
-                    label.push(key);
+                    label.push(key == 'null' ? 'Unknown': key);
                     dataSet.push(data[key]);
                 }
             }
@@ -94,7 +94,7 @@ var ApiDetails = function () {
 
             for (var key in data1) {
                 if(data1.hasOwnProperty(key)) {
-                    label.push(key);
+                    label.push((key == '' || key == 'null') ? 'Unknown' : key.substring(0,15));
                     dataSet.push(data1[key]);
                 }
             }

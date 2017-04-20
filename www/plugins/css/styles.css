@@ -101,6 +101,7 @@ input[type=radio]:checked ~ .check {
     height:100%;
     background-color: rgba(182, 182, 182, 0.9);
     background-image:url('spinner.gif');
+    background-size: 100px 100px;
     background-repeat:no-repeat;
     background-position:center;
     z-index:10000000;
