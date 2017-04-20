@@ -45,7 +45,7 @@ cloudHubApp.controller('chooseEnv', function($scope, $location) {
 
 cloudHubApp.controller('apiRuntime', function($scope, $location) {
     $scope.chooseEnv = function(){
-        $location.url('/business-group');
+        $location.url('/');
     }
 });
 
