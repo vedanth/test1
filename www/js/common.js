@@ -31,6 +31,7 @@ var Common = function () {
                 success: function(data) {
                     callback(data);
                 },
+                timeout: 60000,
                 error: function(jqXHR,textStatus,errorThrown) {
                    console.log(jqXHR.status);
                     console.log(jqXHR.readyState);
@@ -60,6 +61,7 @@ var Common = function () {
                 success: function(data) {
                     callback(data);
                 },
+                timeout: 60000,
                 data: data,
                 error: function(jqXHR,textStatus,errorThrown) {
                     console.log(jqXHR.status);

@@ -33,6 +33,11 @@ cloudHubApp.config(function($routeProvider) {
             controller  : 'businessGroups'
         })
 
+        .when('/app-logs', {
+            templateUrl : 'pages/app-logs.html',
+            controller  : 'appLogs'
+        })
+
         .otherwise({
             redirectTo: '/'
         });
@@ -50,6 +55,10 @@ cloudHubApp.controller('apiRuntime', function($scope, $location) {
 });
 
 cloudHubApp.controller('runtimeApp', function($scope) {
+
+});
+
+cloudHubApp.controller('appLogs', function($scope) {
 
 });
 

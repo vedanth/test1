@@ -53,7 +53,7 @@ var RuntimeAppDetails = function () {
 
             $.each(dataset, function(k, v) {
                 counter++;
-                if((dataSize - counter) <= 10){
+                if((dataSize - counter) <= 10) {
                     dataArr.push(v);
                     var d = new Date(parseInt(k));
                     label.push(d.getHours()+':'+d.getMinutes()+':'+d.getSeconds());
@@ -128,6 +128,7 @@ var RuntimeAppDetails = function () {
 
             $('.mdl-layout-title').text("Application Details");
             $('.mdl-card__title-text').text(RUNTIME_APP_DETAILS.domain);
+            localStorage.setItem('domain',RUNTIME_APP_DETAILS.domain);
 
             RuntimeAppDetails.populateBasicDetails();
 

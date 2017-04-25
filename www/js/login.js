@@ -61,6 +61,9 @@ var Login = function () {
             }
         },
         init: function() {
+            if(localStorage.getItem('username') != null){
+                $('input.username').val(localStorage.getItem('username'));
+            }
             $('button').on('click',function () {
                 Login.login();
             });
