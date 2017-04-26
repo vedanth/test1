@@ -34,10 +34,19 @@ var Login = function () {
                         xhr.setRequestHeader ("Authorization", "Basic " + btoa(localStorage.getItem('username') + ":" + localStorage.getItem('password')));
                         xhr.setRequestHeader ("X-ANYPNT-ENV-ID",localStorage.getItem('selectedEnvId'));
                     },
-                    success: function(data) {
+                    success: function(data, status, xhr) {
                         localStorage.setItem('username', $('input.username').val());
                         localStorage.setItem('password', $('input.password').val());
-                        window.location.replace('landing.html');
+
+                        console.log(APPLICATION_VERSION);
+                        console.log(xhr.getResponseHeader('appVersion'));
+
+                        if(APPLICATION_VERSION != xhr.getResponseHeader('appVersion')){
+                            console.log('eeqe32');
+                            window.location.replace('https://unilever.sharepoint.com/sites/AdaptiveIntegrationOnline/Shared%20Documents/CloudhHubMobileApplication/AdaptiveIntg.apk');
+                        }
+
+//                        window.location.replace('landing.html');
                     },
                     data: '{"username":"'+$('input.username').val()+'","password":"'+$('input.password').val()+'"}',
                     error: function(jqXHR,textStatus,errorThrown) {
