@@ -11,20 +11,23 @@ var RuntimeAppDetails = function () {
             $('.userName').text(RUNTIME_APP_DETAILS.userName);
 
             var status = RUNTIME_APP_DETAILS.status;
-            var tmpl;
+            var manageApp = '';
             if(status == 'STARTED'){
-                tmpl = '<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect stop-app" style="margin-left: 70px; color: #c95408;text-align: center;">'+
+                manageApp = '<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect stop-app" style="margin-left: 70px; color: #c95408;text-align: center;">'+
                     '<img src="images/stop-button.png" height="35px" width="35px"> Stop Application'+
+                    '</a>';
+                manageApp = manageApp + '<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect restart-app" style="margin-left: 70px; color: #5483e9;text-align: center;">'+
+                    '<img src="images/restart.png" height="30px" width="30px"> Restart Application'+
                     '</a>';
                 $('.status').append('<span style="color: #1fb55f">'+status+'</span>');
             }else{
-                tmpl = '<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect start-app" style="margin-left: 70px; color: #1fb55f;text-align: center;">'+
+                manageApp = '<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect start-app" style="margin-left: 70px; color: #1fb55f;text-align: center;">'+
                     '<img src="images/play_button.png" height="35px" width="35px"> Start Application'+
                     '</a>';
                 $('.status').append('<span style="color: #c95408">'+status+'</span>');
             }
 
-            $('.mdl-card--border').append(tmpl);
+            $('.mdl-card--border').append(manageApp);
             this.showStats();
         },
         showStats: function(){
@@ -124,6 +127,23 @@ var RuntimeAppDetails = function () {
                     RuntimeAppDetails.showSnackBar1(msg);
                 });
         },
+        showDialog: function(status){
+            var dialog = document.querySelector('dialog');
+            if (! dialog.showModal) {
+                dialogPolyfill.registerDialog(dialog);
+            }
+
+            dialog.querySelector('.yes').addEventListener('click', function() {
+                dialog.close();
+                RuntimeAppDetails.manageApp(RUNTIME_APP_DETAILS.domain,status,'Application will be undeployed');
+            });
+
+            dialog.querySelector('.no').addEventListener('click', function() {
+                dialog.close();
+            });
+
+            dialog.showModal();
+        },
         init: function() {
 
             $('.mdl-layout-title').text("Application Details");
@@ -133,21 +153,11 @@ var RuntimeAppDetails = function () {
             RuntimeAppDetails.populateBasicDetails();
 
             $('body').unbind().on('click', 'a.stop-app', function() {
-                var dialog = document.querySelector('dialog');
-                if (! dialog.showModal) {
-                    dialogPolyfill.registerDialog(dialog);
-                }
+                   RuntimeAppDetails.showDialog('stop');
+            });
 
-                dialog.querySelector('.yes').addEventListener('click', function() {
-                    dialog.close();
-                    RuntimeAppDetails.manageApp(RUNTIME_APP_DETAILS.domain,'stop','Application will be undeployed');
-                });
-
-                dialog.querySelector('.no').addEventListener('click', function() {
-                    dialog.close();
-                });
-
-                dialog.showModal();
+            $('body').unbind().on('click', 'a.restart-app', function() {
+                  RuntimeAppDetails.showDialog('restart');
             });
 
             $('body').on('click', 'a.start-app', function() {

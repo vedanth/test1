@@ -1,26 +1,22 @@
 var AppLogs = function () {
     
     return {
-        getDeploymentId: function() {
+        getDeploymentId: function(filter) {
 
             Common.ajaxGet('/cloudhub/api/v2/applications/'+localStorage.getItem('domain')+'/deployments?orderByDate=DESC',function(data) {
-
-                console.log(data.data[0].deploymentId);
-                console.log(data.data[0].instances[0].instanceId);
-                AppLogs.getDeploymentLogs(data.data[0].deploymentId, data.data[0].instances[0].instanceId);
+                AppLogs.getDeploymentLogs(data.data[0].deploymentId, data.data[0].instances[0].instanceId, filter);
 
             });
         },
-        getDeploymentLogs: function(deploymentId, instanceId){
-            console.log(new Date().getTime());
+        getDeploymentLogs: function(deploymentId, instanceId, filter){
             var reqData = '{'+
             '"deploymentId": "'+deploymentId+'",'+
                 '"instanceId": "'+instanceId+'",'+
                 '"startTime": 0,'+
                 '"endTime": '+new Date().getTime()+', '+
-                '"text": "",'+
+                '"text": "'+filter+'",'+
                 '"descending": true,'+
-                '"limit": 10'+
+                '"limit": 12'+
         '}';
             Common.ajaxPost('/cloudhub/api/v2/applications/'+localStorage.getItem('domain')+'/logs',reqData, function(data){
 
@@ -50,13 +46,15 @@ var AppLogs = function () {
                 text = text + 'yellow" >'+priority;
             }
             text = text + '</span>';
-            console.log(text);
             return text;
+        },
+        filterLogs :function(){
+              AppLogs.getDeploymentId($('#search-logs-filter').val() == null ? '' : $('#search-logs-filter').val());
         },
         init: function() {
 
             $('.mdl-layout-title').text('Application Logs');
-            AppLogs.getDeploymentId();
+            AppLogs.getDeploymentId('');
 
         }
     };

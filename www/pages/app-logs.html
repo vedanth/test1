@@ -16,7 +16,21 @@
         border-bottom:1pt solid rgba(0, 0, 0, 0.20);
     }
 </style>
+
+<div class="mdl-grid" style="padding: 0px 0px 0px 0px !important;">
+    <div class="mdl-cell mdl-cell--2-col">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="search-logs-filter" placeholder="Search Logs...">
+
+        </div>
+    </div>
+    <div class="mdl-cell mdl-cell--2-col">
+        <i class="mdl-color-text--white material-icons" onclick="AppLogs.filterLogs();" style="background: #4252ff; margin-top: 20px;padding: 5px" role="presentation">refresh</i>
+    </div>
+</div>
+
 <div class="mdl-grid" style="padding: 10px 0px 0px 0px !important;">
+
     <div class="mdl-cell mdl-cell--12-col">
 
        <table class="mdl-data-table1" style="width: 100%">

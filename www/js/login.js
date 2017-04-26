@@ -41,12 +41,15 @@ var Login = function () {
                         console.log(APPLICATION_VERSION);
                         console.log(xhr.getResponseHeader('appVersion'));
 
-                        if(APPLICATION_VERSION != xhr.getResponseHeader('appVersion')){
+
+//                        window.location.replace('https://unilever.sharepoint.com/sites/AdaptiveIntegrationOnline/Shared%20Documents/CloudhHubMobileApplication/AdaptiveIntg.apk');
+
+                        /*if(APPLICATION_VERSION != xhr.getResponseHeader('appVersion')){
                             console.log('eeqe32');
                             window.location.replace('https://unilever.sharepoint.com/sites/AdaptiveIntegrationOnline/Shared%20Documents/CloudhHubMobileApplication/AdaptiveIntg.apk');
-                        }
+                        }*/
 
-//                        window.location.replace('landing.html');
+                        window.location.replace('landing.html');
                     },
                     data: '{"username":"'+$('input.username').val()+'","password":"'+$('input.password').val()+'"}',
                     error: function(jqXHR,textStatus,errorThrown) {
