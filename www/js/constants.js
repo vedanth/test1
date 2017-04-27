@@ -1,5 +1,5 @@
 APPLICATION_HOST="https://platform-management-v1.eu.cloudhub.io/proxy";
-APPLICATION_VERSION='1.0';
+APPLICATION_VERSION='2.0';
 //APPLICATION_HOST="http://localhost:8082/proxy";
 RUNTIME_APP_DETAILS=null;
 RUNTIME_APP_RESPONSE=null;
