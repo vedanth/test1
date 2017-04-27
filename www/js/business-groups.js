@@ -13,7 +13,7 @@ var BusinessGroups = function () {
                     var row ='';
                     $.each(data.user.memberOfOrganizations, function(key,value) {
                         row = row +' <li class="mdl-list__item app_name" >'+
-                            '<a href="#/runtime" onclick="BusinessGroups.selectBusinessGroup(this)" style="text-decoration: none; color: #000000"><span class="mdl-list__item-primary-content ch_business_groups" envId="'+value.id+'" envName="'+value.name+'">'+
+                            '<a href="#/choose-env" onclick="BusinessGroups.selectBusinessGroup(this)" style="text-decoration: none; color: #000000"><span class="mdl-list__item-primary-content ch_business_groups" envId="'+value.id+'" envName="'+value.name+'">'+
                             '<i class="material-icons mdl-list__item-avatar" style="background: #ffffff;color: #5a92ff;">pages</i>'+
                             value.name+'</span>'+
                             '</a></li>';

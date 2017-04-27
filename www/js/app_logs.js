@@ -9,6 +9,7 @@ var AppLogs = function () {
             });
         },
         getDeploymentLogs: function(deploymentId, instanceId, filter){
+            console.log("----#"+filter + "#----")
             var reqData = '{'+
             '"deploymentId": "'+deploymentId+'",'+
                 '"instanceId": "'+instanceId+'",'+
