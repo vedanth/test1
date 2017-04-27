@@ -49,6 +49,7 @@ var Login = function () {
                             window.location.replace('https://unilever.sharepoint.com/sites/AdaptiveIntegrationOnline/Shared%20Documents/CloudhHubMobileApplication/AdaptiveIntg.apk');
                         }*/
 
+                        alert('login done');
                         window.location.replace('landing.html');
                     },
                     data: '{"username":"'+$('input.username').val()+'","password":"'+$('input.password').val()+'"}',

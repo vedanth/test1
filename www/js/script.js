@@ -4,6 +4,11 @@ cloudHubApp.config(function($routeProvider) {
     $routeProvider
 
         .when('/', {
+            templateUrl : 'pages/business-group.html',
+            controller  : 'businessGroups'
+        })
+
+        .when('/choose-env', {
             templateUrl : 'pages/choose-env.html',
             controller  : 'chooseEnv'
         })
