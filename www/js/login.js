@@ -41,16 +41,14 @@ var Login = function () {
                         console.log(APPLICATION_VERSION);
                         console.log(xhr.getResponseHeader('appVersion'));
 
-
-//                        window.location.replace('https://unilever.sharepoint.com/sites/AdaptiveIntegrationOnline/Shared%20Documents/CloudhHubMobileApplication/AdaptiveIntg.apk');
-
-                        /*if(APPLICATION_VERSION != xhr.getResponseHeader('appVersion')){
-                            console.log('eeqe32');
-                            window.location.replace('https://unilever.sharepoint.com/sites/AdaptiveIntegrationOnline/Shared%20Documents/CloudhHubMobileApplication/AdaptiveIntg.apk');
-                        }*/
+                        if(APPLICATION_VERSION != xhr.getResponseHeader('appVersion')){
+                            Login.showDialog();
+                        }else{
+                            window.location.replace('landing.html');
+                        }
 
 //                        alert('login done');
-                        window.location.replace('landing.html');
+//                        window.location.replace('landing.html');
                     },
                     data: '{"username":"'+$('input.username').val()+'","password":"'+$('input.password').val()+'"}',
                     error: function(jqXHR,textStatus,errorThrown) {
@@ -67,10 +65,15 @@ var Login = function () {
                         $('#loadingDiv').hide();
                     }
                 });
-
-               /* localStorage.setItem('username', $('input.username').val());
-                localStorage.setItem('password', $('input.password').val());
-                window.location.replace('landing.html');*/
+            }
+        },
+        showDialog: function() {
+            var r = confirm("New version of the app is available. Do you want to install the app ?");
+            if (r == true) {
+                window.open('https://platform-ui.eu.cloudhub.io/','_system','location=no');
+                $('#loadingDiv').hide();
+            } else {
+                window.location.replace('landing.html');
             }
         },
         init: function() {

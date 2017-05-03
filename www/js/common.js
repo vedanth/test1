@@ -90,6 +90,7 @@ var Common = function () {
         },
         logout: function(){
             localStorage.removeItem('selectedOrgId');
+            localStorage.removeItem('password');
             window.location.replace('index.html');
         }
     };

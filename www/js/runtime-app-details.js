@@ -156,7 +156,7 @@ var RuntimeAppDetails = function () {
                    RuntimeAppDetails.showDialog('stop');
             });
 
-            $('body').unbind().on('click', 'a.restart-app', function() {
+            $('body').on('click', 'a.restart-app', function() {
                   RuntimeAppDetails.showDialog('restart');
             });
 
